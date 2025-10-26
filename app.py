@@ -24,3 +24,11 @@ class User(db.Model) :
     firstName = db.Column(db.String(100))
     lastName = db.Column(db.String(100))
     password = db.Column(db.String(16), nullable = False)
+
+#login route
+@app.route("/")
+def login() :
+    return render_template("login.html")
+
+if __name__ == "__main__" :
+    app.run(debug = True)
