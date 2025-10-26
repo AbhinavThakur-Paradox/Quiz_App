@@ -30,12 +30,36 @@ class User(db.Model) :
 def login() :
     if request.method == "POST" :
         return redirect("/admin_login")
+    if request.method == "GET" :
+        username = request.form.get("username")
+        password = request.form.get("password")
+        user = User.query.filter_by(username = username).first()
+        if user:
+            if user.password == password:
+                pass
     return render_template("login.html")
 
 #admin login page
-@app.route("/admin_login")
+@app.route("/admin_login", methods = ["POST", "GET"])
 def admin_login() :
+    if request.method == "POST" :
+        username = request.form.get("username")
+        password = request.form.get("password")
+        admin = Admin.query.filter_by(username = username).first()
+        if admin:
+            if admin.password == password:
+                print("Admin logged in")
+                return redirect("/admin_dashboard")
+            else :
+                pass
+        else :
+            pass
     return render_template("admin_login.html")
+
+#admin dashboard
+@app.route("/admin_dashboard")
+def admin_dashboard() :
+    return render_template("admin_dashboard.html")
 
 if __name__ == "__main__" :
     app.run(debug = True)
