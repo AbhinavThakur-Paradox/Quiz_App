@@ -6,5 +6,19 @@
 {% endblock %}
 
 {% block body %}
-   
+   <div class="main">
+    <div class="header">
+        <button>Admin</button>
+    </div>
+        <div class="login-popup">
+            <h2>Please Login !</h2>
+            <form action="/" method="get">
+                <input type="text" placeholder="ENTER YOUR USERNAME" name="username" id="username">
+                <br>
+                <input type="password" name="password" id="password" placeholder="Enter your password">
+                <br>
+                <button>Log-in</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

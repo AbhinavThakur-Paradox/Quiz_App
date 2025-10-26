@@ -1,0 +1,12 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header{
+    position: absolute;
+    top: 0;
+}
+
+button {
+    border-radius: 5px;
+}
