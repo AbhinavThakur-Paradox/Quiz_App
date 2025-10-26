@@ -26,9 +26,16 @@ class User(db.Model) :
     password = db.Column(db.String(16), nullable = False)
 
 #login route
-@app.route("/")
+@app.route("/", methods = ["POST", "GET"])
 def login() :
+    if request.method == "POST" :
+        return redirect("/admin_login")
     return render_template("login.html")
+
+#admin login page
+@app.route("/admin_login")
+def admin_login() :
+    return render_template("admin_login.html")
 
 if __name__ == "__main__" :
     app.run(debug = True)

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Quiz-App</title>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <div class="header">
+            <h2>Admin Login</h2>     
+        </div>
+        <div class="login-popup">
+                <h2>Please Login !</h2>
+                <form action="/" method="get">
+                    <input type="text" placeholder="ENTER YOUR USERNAME" name="username" id="username">
+                    <br>
+                    <input type="password" name="password" id="password" placeholder="Enter your password">
+                    <br>
+                    <button>Log-in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
