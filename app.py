@@ -61,5 +61,22 @@ def admin_login() :
 def admin_dashboard() :
     return render_template("admin_dashboard.html")
 
+@app.route("/admin_dashboard/add_user", methods = ["POST", "GET"])
+def add_user():
+    if request.method == "POST" :
+        username = request.form.get("userName")
+        first = request.form.get("firstName")
+        last = request.form.get("lastName")
+        password = request.form.get("password")
+
+        if not User.query.filter_by(username = username).first() : 
+            newUser = User(username = username, firstNme = first, lastName = last, password = password)
+            db.session.add(newUser)
+            db.session.commit()
+            return render_template("add_user.html", message = "User added successfully")
+        else :
+            return render_template("add_user.html", message = "Username already exists")
+        return render_temlate("add_user.html")
+
 if __name__ == "__main__" :
     app.run(debug = True)
