@@ -57,7 +57,7 @@ def admin_login() :
     return render_template("admin_login.html")
 
 #admin dashboard
-@app.route("/admin_dashboard")
+@app.route("/admin_dashboard", methods = ["POST", "GET"])
 def admin_dashboard() :
     return render_template("admin_dashboard.html")
 
@@ -68,15 +68,16 @@ def add_user():
         first = request.form.get("firstName")
         last = request.form.get("lastName")
         password = request.form.get("password")
-
-        if not User.query.filter_by(username = username).first() : 
-            newUser = User(username = username, firstNme = first, lastName = last, password = password)
-            db.session.add(newUser)
-            db.session.commit()
-            return render_template("add_user.html", message = "User added successfully")
-        else :
-            return render_template("add_user.html", message = "Username already exists")
-        return render_temlate("add_user.html")
+        activeBtn = request.form["action"]
+        if activeBtn == "btn1" :
+            if not User.query.filter_by(username = username).first() : 
+                newUser = User(username = username, firstNme = first, lastName = last, password = password)
+                db.session.add(newUser)
+                db.session.commit()
+                return render_template("add_user.html", message = "User added successfully")
+            elif User.query.filter_by(username = username).first() :
+                return render_template("add_user.html", message = "Username already exists")
+        return render_template("add_user.html")
 
 if __name__ == "__main__" :
     app.run(debug = True)

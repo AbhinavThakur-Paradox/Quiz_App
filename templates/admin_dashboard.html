@@ -6,13 +6,15 @@
 
 {% block body %}
     <div class="main">
-        <div class="header">
-            <button>Add Admin</button>
-            <button>Add User</button>
-        </div>
-        <div class="side-bar">
-            <button>View Quizzes</button>
-            <button>View Users</button>
-        </div>
+        <form action="/admin_dashboard" method="post">
+            <div class="header">
+                <button type="submit" name="action" value="btn1">Add Admin</button>
+                <button type="submit" name="action" value="btn2">Add User</button>
+            </div>
+            <div class="side-bar">
+                <button type="submit" name="action" value="btn3">View Quizzes</button>
+                <button type="submit" name="action" value="btn4">View Users</button>
+            </div>
+        </form>   
     </div>
 {% endblock %}
